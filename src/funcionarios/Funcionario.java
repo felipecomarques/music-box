@@ -5,6 +5,7 @@ public abstract class Funcionario {
 	private String CPF;
 	private double salario;
 	private int idade;
+	private String login;
 	
 	
 	// MÉTODOS //

@@ -6,4 +6,5 @@
  *
  */
 module MusicBox {
+	requires java.desktop;
 }

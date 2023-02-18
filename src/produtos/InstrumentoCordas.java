@@ -6,6 +6,7 @@ public class InstrumentoCordas {
 	private String estadoUso;
 	private String madeiraCorpo;
 	private String madeiraBraco;
+	private int estoque;
 	private double preco;
 	
 	
@@ -62,6 +63,13 @@ public class InstrumentoCordas {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	
+
+	public int getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
+	}
 	
 }
