@@ -11,7 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
@@ -51,7 +53,7 @@ public class TelaLogin extends JFrame {
 	 */
 	public TelaLogin() {
 		setTitle("Login");		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 260, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,9 +81,13 @@ public class TelaLogin extends JFrame {
 		JButton EntrarButton = new JButton("Entrar");
 		EntrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (checkLogin(LoginField.getText(), new String (passwordField.getPassword())))
+				if (checkLogin(LoginField.getText(), new String (passwordField.getPassword()))) {
 					JOptionPane.showMessageDialog(null, "Bem-vindo ao sistema!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-				else
+					MenuPrincipal MP = new MenuPrincipal();
+					MP.setVisible(true);
+					dispose();
+				}
+					else
 					JOptionPane.showMessageDialog(null, "Dados incorretos!", "Erro!", JOptionPane.ERROR_MESSAGE);
 			}
 		});
@@ -99,13 +105,19 @@ public class TelaLogin extends JFrame {
 		contentPane.add(CadastroInfoLabel);
 		
 		JButton CadastrarButton = new JButton("Cadastrar-se");
+		CadastrarButton.setEnabled(false);
 		CadastrarButton.setBounds(130, 222, 100, 23);
 		contentPane.add(CadastrarButton);
 		
 		this.setLocationRelativeTo(null);
 	}
+	
 	public boolean checkLogin(String login, String senha){
 		return login.equals("admin")&& senha.equals("123");
 	}
 	
+	public void close() {
+		WindowEvent closeWindow = new WindowEvent(this,WindowEvent.WINDOW_CLOSED);
+		Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+	}
 }

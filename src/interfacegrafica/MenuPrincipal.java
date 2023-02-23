@@ -49,7 +49,7 @@ public class MenuPrincipal extends JFrame {
 	 */
 	public MenuPrincipal() {
 		setTitle("MusicBox");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 360, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,6 +61,42 @@ public class MenuPrincipal extends JFrame {
 		BemVindoLabel.setBounds(70, 11, 205, 36);
 		BemVindoLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		contentPane.add(BemVindoLabel);
+		
+		JButton ConfiguracoesButton = new JButton("Configurações");
+		ConfiguracoesButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		ConfiguracoesButton.setBounds(139, 227, 101, 23);
+		contentPane.add(ConfiguracoesButton);
+		
+		JButton SairButton = new JButton("Sair");
+		SairButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLogin TL = new TelaLogin();
+				TL.setVisible(true);
+				dispose();
+			}
+		});
+		SairButton.setBounds(245, 227, 89, 23);
+		contentPane.add(SairButton);
+		
+		JButton FuncionariosButton = new JButton("Funcionários");
+		FuncionariosButton.setEnabled(false);
+		FuncionariosButton.setBounds(25, 139, 89, 23);
+		contentPane.add(FuncionariosButton);
+		
+		JButton VenderButton = new JButton("Vender");
+		VenderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		VenderButton.setBounds(25, 105, 89, 23);
+		contentPane.add(VenderButton);
+		
+		JButton EstoqueButton = new JButton("Estoque");
+		EstoqueButton.setBounds(124, 105, 89, 23);
+		contentPane.add(EstoqueButton);
 		
 		this.setLocationRelativeTo(null);
 	}
