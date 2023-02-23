@@ -6,6 +6,7 @@ public class InstrumentoCordas {
 	private String estadoUso;
 	private String madeiraCorpo;
 	private String madeiraBraco;
+	private String captacao;
 	private int estoque;
 	private double preco;
 	

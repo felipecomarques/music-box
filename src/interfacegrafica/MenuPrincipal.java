@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import java.awt.Color;
 
 public class MenuPrincipal extends JFrame {
 
@@ -50,24 +51,19 @@ public class MenuPrincipal extends JFrame {
 	public MenuPrincipal() {
 		setTitle("MusicBox");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 360, 300);
+		setBounds(100, 100, 246, 189);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel BemVindoLabel = new JLabel("Sistema MusicBox");
-		BemVindoLabel.setBounds(70, 11, 205, 36);
-		BemVindoLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		contentPane.add(BemVindoLabel);
-		
 		JButton ConfiguracoesButton = new JButton("Configurações");
 		ConfiguracoesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		ConfiguracoesButton.setBounds(139, 227, 101, 23);
+		ConfiguracoesButton.setBounds(20, 111, 101, 23);
 		contentPane.add(ConfiguracoesButton);
 		
 		JButton SairButton = new JButton("Sair");
@@ -78,25 +74,46 @@ public class MenuPrincipal extends JFrame {
 				dispose();
 			}
 		});
-		SairButton.setBounds(245, 227, 89, 23);
+		SairButton.setBounds(127, 111, 89, 23);
 		contentPane.add(SairButton);
 		
 		JButton FuncionariosButton = new JButton("Funcionários");
 		FuncionariosButton.setEnabled(false);
-		FuncionariosButton.setBounds(25, 139, 89, 23);
+		FuncionariosButton.setBounds(123, 77, 93, 23);
 		contentPane.add(FuncionariosButton);
 		
-		JButton VenderButton = new JButton("Vender");
-		VenderButton.addActionListener(new ActionListener() {
+		JButton EstoqueButton = new JButton("Estoque");
+		EstoqueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaPrincipal TP = new TelaPrincipal();
+				TP.setVisible(true);
+				dispose();
 			}
 		});
-		VenderButton.setBounds(25, 105, 89, 23);
-		contentPane.add(VenderButton);
-		
-		JButton EstoqueButton = new JButton("Estoque");
-		EstoqueButton.setBounds(124, 105, 89, 23);
+		EstoqueButton.setBounds(20, 77, 101, 23);
 		contentPane.add(EstoqueButton);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
+		panel.setBounds(0, 0, 230, 37);
+		contentPane.add(panel);
+		
+		JLabel BemVindoLabel = new JLabel("Sistema MusicBox");
+		panel.add(BemVindoLabel);
+		BemVindoLabel.setForeground(new Color(255, 255, 255));
+		BemVindoLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 0, 0));
+		panel_1.setForeground(new Color(0, 0, 0));
+		panel_1.setBounds(-1, 37, 231, 29);
+		contentPane.add(panel_1);
+		
+		JLabel lblNewLabel = new JLabel("Seja bem-vindo(a)!");
+		panel_1.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		
 		
 		this.setLocationRelativeTo(null);
 	}

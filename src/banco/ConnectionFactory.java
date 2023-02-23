@@ -22,7 +22,7 @@ public class ConnectionFactory {
 
     // ATRIBUTOS //
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver"; //Driver do JDBC
-    private static final String URL = "jdbc:mysql://localhost:3306/acervopessoal" + "?useTimezone=true&serverTimezone=America/Sao_Paulo" + "&useSSL=false" + "&allowPublicKeyRetrieval=true"; //URL do banco, pode ser necessário alterar
+    private static final String URL = "jdbc:mysql://localhost:3306/musicbox" + "?useTimezone=true&serverTimezone=America/Sao_Paulo" + "&useSSL=false" + "&allowPublicKeyRetrieval=true"; //URL do banco, pode ser necessário alterar
     private static final String USER = "root"; //Usuário do SQL, pode ser necessário alterar
     private static final String PASS = "123321"; //Senha do Localhost, pode ser necessário alterar
 
