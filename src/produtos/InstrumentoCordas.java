@@ -1,76 +1,93 @@
 package produtos;
 
 public class InstrumentoCordas {
-	private String marca;
-	private String modelo;
-	private String estadoUso;
-	private String madeiraCorpo;
-	private String madeiraBraco;
-	private String captacao;
-	private int estoque;
-	private double preco;
-	
-	
-	// MÉTODOS //
-	public void ReproduzirDemo() {
-		
-	}
-	
-	// GET E SET //
-	public String getMarca() {
-		return marca;
-	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+    private int ID;
+    private String marca;
+    private String modelo;
+    private String estadoUso;
+    private String madeiraCorpo;
+    private String madeiraBraco;
+    private String captacao;
+    private int estoque;
+    private double preco;
 
-	public String getModelo() {
-		return modelo;
-	}
+    // MÉTODOS //
+    public void ReproduzirDemo() {
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    }
+    
+    public int getID() {
+        return ID;
+    }
 
-	public String getEstadoUso() {
-		return estadoUso;
-	}
+    // GET E SET //
+    public void setID(int ID) {    
+        this.ID = ID;
+    }
 
-	public void setEstadoUso(String estadoUso) {
-		this.estadoUso = estadoUso;
-	}
+    public String getCaptacao() {
+        return captacao;
+    }
 
-	public String getMadeiraCorpo() {
-		return madeiraCorpo;
-	}
+    public void setCaptacao(String captacao) {
+        this.captacao = captacao;
+    }
 
-	public void setMadeiraCorpo(String madeiraCorpo) {
-		this.madeiraCorpo = madeiraCorpo;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public String getMadeiraBraco() {
-		return madeiraBraco;
-	}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-	public void setMadeiraBraco(String madeiraBraco) {
-		this.madeiraBraco = madeiraBraco;
-	}
+    public String getModelo() {
+        return modelo;
+    }
 
-	public double getPreco() {
-		return preco;
-	}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
+    public String getEstadoUso() {
+        return estadoUso;
+    }
 
-	public int getEstoque() {
-		return estoque;
-	}
+    public void setEstadoUso(String estadoUso) {
+        this.estadoUso = estadoUso;
+    }
 
-	public void setEstoque(int estoque) {
-		this.estoque = estoque;
-	}
-	
+    public String getMadeiraCorpo() {
+        return madeiraCorpo;
+    }
+
+    public void setMadeiraCorpo(String madeiraCorpo) {
+        this.madeiraCorpo = madeiraCorpo;
+    }
+
+    public String getMadeiraBraco() {
+        return madeiraBraco;
+    }
+
+    public void setMadeiraBraco(String madeiraBraco) {
+        this.madeiraBraco = madeiraBraco;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
 }

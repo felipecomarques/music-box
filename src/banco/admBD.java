@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class admBD {
+public class AdmBD {
     public boolean gerarBanco() {
         Connection con = getConnectionBD();
         String sql = "CREATE DATABASE IF NOT EXISTS musicbox";
