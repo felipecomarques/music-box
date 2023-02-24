@@ -78,6 +78,10 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(SairButton);
 		
 		JButton FuncionariosButton = new JButton("Funcionários");
+		FuncionariosButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		FuncionariosButton.setEnabled(false);
 		FuncionariosButton.setBounds(123, 77, 93, 23);
 		contentPane.add(FuncionariosButton);
