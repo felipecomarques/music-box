@@ -4,9 +4,11 @@
  */
 package interfacegrafica;
 
+import banco.BaixoDAO;
 import banco.GuitarraDAO;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import produtos.Baixo;
 import produtos.Guitarra;
 
 /**
@@ -57,9 +59,27 @@ public class Estoque extends javax.swing.JFrame {
                 g.getMadeiraBraco(),
                 g.getCaptacao(),
                 g.getTipocorpo(),
+                g.getRaio(),     
                 g.getEstoque(),
                 g.getPreco(),
-                g.getRaio()
+                
+            });
+        }
+        
+        BaixoDAO bassDAO = new BaixoDAO();
+        for (Baixo b : bassDAO.encontrar(null)) {
+            modelo2.addRow(new Object[]{
+                b.getID(),
+                b.getMarca(),
+                b.getModelo(),
+                b.getEstadoUso(),
+                b.getMadeiraCorpo(),
+                b.getMadeiraBraco(),
+                b.getCaptacao(),
+                b.getNumCordas(),
+                b.getPassiovoativo(),
+                b.getEstoque(),
+                b.getPreco(),              
             });
         }
     }
@@ -219,6 +239,11 @@ public class Estoque extends javax.swing.JFrame {
         });
 
         jButton6.setText("Atualizar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,6 +306,10 @@ public class Estoque extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        LerJTable();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
