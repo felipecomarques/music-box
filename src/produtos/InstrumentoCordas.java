@@ -13,16 +13,31 @@ public class InstrumentoCordas {
     private double preco;
 
     // MÉTODOS //
-    public void ReproduzirDemo() {
-
+    public boolean editar(int id, String marca, String modelo, String uso, String madeiracorpo,
+            String madeiraBraco, String captacao, int estoque, double preco) {
+        setID(id);
+        setMarca(marca);
+        setModelo(modelo);
+        setEstadoUso(uso);
+        setMadeiraBraco(madeiraBraco);
+        setMadeiraCorpo(madeiracorpo);
+        setCaptacao(captacao);
+        setEstoque(estoque);
+        setPreco(preco);
+        return true;
     }
     
+    public boolean deletar(int id) {
+        setID(id);
+        return true;
+    }
+
     public int getID() {
         return ID;
     }
 
     // GET E SET //
-    public void setID(int ID) {    
+    public void setID(int ID) {
         this.ID = ID;
     }
 

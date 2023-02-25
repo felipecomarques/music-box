@@ -1,4 +1,5 @@
 package banco;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +21,8 @@ ResultSet. No final de cada método, é necessário fechar a conexão com o banc
 OBS.: Se você não sabe o que está fazendo, não altere muito o DAO. Isso pode
 causar erros futuros.
  */
-
 public class GuitarraDAO {
+
     // ATRIBUTOS //
     private Connection con = null;
 
@@ -29,10 +30,10 @@ public class GuitarraDAO {
     public GuitarraDAO() {
         con = ConnectionFactory.getConnection();
     }
-    
+
     public boolean save(Guitarra guita) {
-        String sql = "INSERT INTO guitarra (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco) \n" +
-                     "VALUES (?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO guitarra (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco) \n"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sql);
@@ -55,20 +56,22 @@ public class GuitarraDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    
+
     public List<Guitarra> encontrar(String modelo) {
-        String sql =  "SELECT * FROM guitarra";
+        String sql = "SELECT * FROM guitarra";
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Guitarra> guitarra = new ArrayList<>();
-        if (modelo != null)
+        if (modelo != null) {
             sql = sql + " WHERE modelo LIKE (?) ORDER BY modelo"; //+ ORDER BY nome
-        else
+        } else {
             sql = sql + " ORDER BY modelo";
+        }
         try {
             stmt = con.prepareStatement(sql);
-            if (modelo != null)
+            if (modelo != null) {
                 stmt.setString(1, "%" + modelo + "%");
+            }
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -92,5 +95,47 @@ public class GuitarraDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return guitarra;
+    }
+
+    public boolean edicao(Guitarra guita) {
+        String sql = "";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, guita.getMarca());
+            stmt.setString(2, guita.getModelo());
+            stmt.setString(3, guita.getEstadoUso());
+            stmt.setString(4, guita.getMadeiraCorpo());
+            stmt.setString(5, guita.getMadeiraBraco());
+            stmt.setString(6, guita.getCaptacao());
+            stmt.setString(7, guita.getTipocorpo());
+            stmt.setDouble(8, guita.getRaio());
+            stmt.setInt(9, guita.getEstoque());
+            stmt.setDouble(10, guita.getPreco());
+            stmt.setInt(11, guita.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao editar " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+
+    public boolean delete(Guitarra Guitarra) {
+        String sql = "DELETE FROM guitarra WHERE id = (?)";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, Guitarra.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
 }

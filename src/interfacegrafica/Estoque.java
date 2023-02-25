@@ -6,6 +6,7 @@ package interfacegrafica;
 
 import banco.BaixoDAO;
 import banco.GuitarraDAO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import produtos.Baixo;
@@ -44,10 +45,10 @@ public class Estoque extends javax.swing.JFrame {
     private void LerJTable() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         DefaultTableModel modelo2 = (DefaultTableModel) jTable2.getModel();
-        
+
         modelo.setNumRows(0);
         modelo2.setNumRows(0);
-        
+
         GuitarraDAO guiDAO = new GuitarraDAO();
         for (Guitarra g : guiDAO.encontrar(null)) {
             modelo.addRow(new Object[]{
@@ -59,13 +60,11 @@ public class Estoque extends javax.swing.JFrame {
                 g.getMadeiraBraco(),
                 g.getCaptacao(),
                 g.getTipocorpo(),
-                g.getRaio(),     
+                g.getRaio(),
                 g.getEstoque(),
-                g.getPreco(),
-                
-            });
+                g.getPreco(),});
         }
-        
+
         BaixoDAO bassDAO = new BaixoDAO();
         for (Baixo b : bassDAO.encontrar(null)) {
             modelo2.addRow(new Object[]{
@@ -79,8 +78,7 @@ public class Estoque extends javax.swing.JFrame {
                 b.getNumCordas(),
                 b.getPassiovoativo(),
                 b.getEstoque(),
-                b.getPreco(),              
-            });
+                b.getPreco(),});
         }
     }
 
@@ -300,7 +298,31 @@ public class Estoque extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if (jTable1.getSelectedRow() != -1 && jTabbedPane1.getSelectedIndex() == 0) {
+            if (jTable1.getSelectedRowCount() > 1) {
+                JOptionPane.showMessageDialog(null, "Não pode editar mais de um item!");
+            } else {
+                Guitarra g = new Guitarra();
+                Editar ED;
+                // marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco
+                int id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                String marca = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+                String modelo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+                String uso = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3);
+                String madeiracorpo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4);
+                String madeiraBraco = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
+                String captacao = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6);
+                String tipocorpo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 7);
+                double raio = (double) jTable1.getValueAt(jTable1.getSelectedRow(), 8);
+                int estoque = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 9);
+                double preco = (double) jTable1.getValueAt(jTable1.getSelectedRow(), 10);
+                ED = new Editar(id, marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, raio, tipocorpo, estoque, preco);
+                ED.setVisible(true);
+                LerJTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "É necessário selecionar algum item nas tabelas!");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
