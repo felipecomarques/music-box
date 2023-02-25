@@ -13,16 +13,17 @@ import produtos.Baixo;
  * @author felip
  */
 public class BaixoDAO {
+
     private Connection con = null;
 
     // METODOS //
     public BaixoDAO() {
         con = ConnectionFactory.getConnection();
     }
-    
+
     public boolean save(Baixo baixo) {
-        String sql = "INSERT INTO baixo (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco) \n" +
-                     "VALUES (?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO baixo (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco) \n"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sql);
@@ -45,20 +46,22 @@ public class BaixoDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    
+
     public List<Baixo> encontrar(String modelo) {
-        String sql =  "SELECT * FROM baixo";
+        String sql = "SELECT * FROM baixo";
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Baixo> baixo = new ArrayList<>();
-        if (modelo != null)
+        if (modelo != null) {
             sql = sql + " WHERE modelo LIKE (?) ORDER BY modelo"; //+ ORDER BY nome
-        else
+        } else {
             sql = sql + " ORDER BY modelo";
+        }
         try {
             stmt = con.prepareStatement(sql);
-            if (modelo != null)
+            if (modelo != null) {
                 stmt.setString(1, "%" + modelo + "%");
+            }
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -82,5 +85,48 @@ public class BaixoDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return baixo;
+    }
+
+    public boolean edicao(Baixo bass) {
+        String sql = "UPDATE baixo SET marca = (?), modelo = (?), uso = (?),  madeiracorpo = (?), madeiraBraco = (?), captacao = (?), \n"
+                + "numcordas = (?), passivoativo = (?), estoque = (?), preco = (?) WHERE id = (?);";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, bass.getMarca());
+            stmt.setString(2, bass.getModelo());
+            stmt.setString(3, bass.getEstadoUso());
+            stmt.setString(4, bass.getMadeiraCorpo());
+            stmt.setString(5, bass.getMadeiraBraco());
+            stmt.setString(6, bass.getCaptacao());
+            stmt.setInt(7, bass.getNumCordas());
+            stmt.setString(8, bass.getPassiovoativo());
+            stmt.setInt(9, bass.getEstoque());
+            stmt.setDouble(10, bass.getPreco());
+            stmt.setInt(11, bass.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao editar " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    
+    public boolean delete(Baixo Baixo) {
+        String sql = "DELETE FROM baixo WHERE id = (?)";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, Baixo.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
 }

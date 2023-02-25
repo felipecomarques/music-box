@@ -1,5 +1,7 @@
 package produtos;
 
+import javax.swing.JOptionPane;
+
 public class InstrumentoCordas {
 
     private int ID;
@@ -13,6 +15,19 @@ public class InstrumentoCordas {
     private double preco;
 
     // MÉTODOS //
+    public boolean cadastrar (int id, String marca, String modelo, String uso, String madeiracorpo, 
+            String madeiraBraco, String captacao, int estoque, double preco) {
+        setID(id);
+        setMarca(marca);
+        setModelo(modelo);
+        setEstadoUso(uso);
+        setMadeiraBraco(madeiraBraco);
+        setMadeiraCorpo(madeiracorpo);
+        setCaptacao(captacao);
+        setEstoque(estoque);
+        setPreco(preco);
+        return true;
+    }
     public boolean editar(int id, String marca, String modelo, String uso, String madeiracorpo,
             String madeiraBraco, String captacao, int estoque, double preco) {
         setID(id);

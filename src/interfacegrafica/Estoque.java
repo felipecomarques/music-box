@@ -100,7 +100,6 @@ public class Estoque extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -136,12 +135,20 @@ public class Estoque extends javax.swing.JFrame {
             new String [] {
                 "id", "Marca", "Modelo", "Uso", "Corpo", "Braço", "Captação", "Cordas", "Passivo/Ativo", "Estoque", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jTabbedPane1.addTab("Baixos", jScrollPane2);
 
-        jButton1.setText("Sair");
+        jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -162,13 +169,6 @@ public class Estoque extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Vender");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,11 +179,9 @@ public class Estoque extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -196,8 +194,7 @@ public class Estoque extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton4)
-                    .addComponent(jButton2)
-                    .addComponent(jButton5)))
+                    .addComponent(jButton2)))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -236,7 +233,7 @@ public class Estoque extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Atualizar");
+        jButton6.setText("Vender");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -253,11 +250,11 @@ public class Estoque extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -272,7 +269,7 @@ public class Estoque extends javax.swing.JFrame {
                         .addComponent(jButton6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
 
         pack();
@@ -320,14 +317,31 @@ public class Estoque extends javax.swing.JFrame {
                 ED.setVisible(true);
                 LerJTable();
             }
+        } else if (jTable2.getSelectedRow() != -1 && jTabbedPane1.getSelectedIndex() == 1) {
+            if (jTable2.getSelectedRowCount() > 1) {
+                JOptionPane.showMessageDialog(null, "Não pode editar mais de um item!");
+            } else {
+                Baixo b = new Baixo();
+                Editar ED;
+                int id = (int) jTable2.getValueAt(jTable2.getSelectedRow(), 0);
+                String marca = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 1);
+                String modelo = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 2);
+                String uso = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 3);
+                String madeiracorpo = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 4);
+                String madeiraBraco = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 5);
+                String captacao = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 6);
+                int numcordas = (int) jTable2.getValueAt(jTable2.getSelectedRow(), 7);
+                String passivoativo = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 8);
+                int estoque = (int) jTable2.getValueAt(jTable2.getSelectedRow(), 9);
+                double preco = (double) jTable2.getValueAt(jTable2.getSelectedRow(), 10);
+                ED = new Editar(id, marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, numcordas, passivoativo, estoque, preco);
+                ED.setVisible(true);
+                LerJTable();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "É necessário selecionar algum item nas tabelas!");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         LerJTable();
@@ -373,7 +387,6 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

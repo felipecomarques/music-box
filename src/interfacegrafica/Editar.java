@@ -5,6 +5,7 @@
 package interfacegrafica;
 
 import javax.swing.JOptionPane;
+import produtos.Baixo;
 import produtos.Guitarra;
 
 /**
@@ -72,14 +73,16 @@ public class Editar extends javax.swing.JFrame {
         try {
             if (Guitarra) {
                 raio = Double.parseDouble(jTextField8.getText());
+                estoque = Integer.parseInt(jTextField9.getText());
                 preco = Double.parseDouble(jTextField10.getText());
+                
             } else 
-                numcordas = Integer.parseInt(jTextField8.getText());
-            estoque = Integer.parseInt(jTextField9.getText());
+                numcordas = Integer.parseInt(jTextField7.getText());
+                estoque = Integer.parseInt(jTextField9.getText());
+                preco = Double.parseDouble(jTextField10.getText());
             return true;
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "O campo 'Edição' deve ser composto "
-                    + "de números! ");
+            JOptionPane.showMessageDialog(null, "Erro: " + ex);
             return false;
         }
     }
@@ -152,6 +155,12 @@ public class Editar extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Marca");
 
@@ -316,8 +325,14 @@ public class Editar extends javax.swing.JFrame {
             gui.editar(getId(), jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
                     jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), raio,
                     jTextField7.getText(), estoque, preco);
+            dispose();
         } else {
-
+            Baixo bass = new Baixo();
+            converter();
+            bass.editar(getId(), jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
+                    jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), numcordas,
+                    jTextField8.getText(), estoque, preco);
+            dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -327,11 +342,21 @@ public class Editar extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 Guitarra g = new Guitarra();
                 g.deletar(id);
+                dispose();
             }
         } else {
-            
+            if (JOptionPane.showConfirmDialog(null, "Deseja excluir esse item? Essa ação não pode ser revertida! ", "Confirmação",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                Baixo b = new Baixo();
+                b.deletar(id);
+                dispose();
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -98,7 +98,8 @@ public class GuitarraDAO {
     }
 
     public boolean edicao(Guitarra guita) {
-        String sql = "";
+        String sql = "UPDATE guitarra SET marca = (?), modelo = (?), uso = (?),  madeiracorpo = (?), madeiraBraco = (?), captacao = (?), \n"
+                + "tipocorpo = (?), raio = (?), estoque = (?), preco = (?) WHERE id = (?);";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sql);

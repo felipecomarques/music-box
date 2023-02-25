@@ -69,6 +69,7 @@ public class TelaLogin extends JFrame {
         LoginField.setBounds(10, 78, 220, 29);
         contentPane.add(LoginField);
         LoginField.setColumns(10);
+        LoginField.setText("a");
 
         JLabel SenhaLabel = new JLabel("Senha:");
         SenhaLabel.setBounds(10, 118, 46, 14);
@@ -77,6 +78,7 @@ public class TelaLogin extends JFrame {
         passwordField = new JPasswordField();
         passwordField.setBounds(10, 143, 220, 29);
         contentPane.add(passwordField);
+        passwordField.setText("a");
 
         JButton EntrarButton = new JButton("Entrar");
         EntrarButton.addActionListener(new ActionListener() {
