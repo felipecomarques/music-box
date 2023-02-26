@@ -2,7 +2,6 @@ package main;
 
 import banco.AdmBD;
 import interfacegrafica.Menu;
-import interfacegrafica.TelaLogin;
 
 public class Main {
 
@@ -47,7 +46,7 @@ public class Main {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName())
+            java.util.logging.Logger.getLogger(Menu.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
         new Menu().setVisible(true);

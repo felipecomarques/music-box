@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MusicBox");
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -74,6 +75,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton3.setText("Voltar");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -120,9 +122,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TelaLogin TL = new TelaLogin();
-        TL.setVisible(true);
-        dispose();
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
