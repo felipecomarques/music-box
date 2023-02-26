@@ -4,7 +4,6 @@
  */
 package interfacegrafica;
 
-import javax.swing.JOptionPane;
 import produtos.Baixo;
 import produtos.Guitarra;
 
@@ -12,85 +11,26 @@ import produtos.Guitarra;
  *
  * @author felip
  */
-public class Editar extends javax.swing.JFrame {
+public class Cadastro extends javax.swing.JFrame {
 
-    private int id;
     private boolean Guitarra = true;
     private double preco;
     private double raio;
     private int numcordas;
     private int estoque;
 
-    //Editar Genêrico
-    public Editar(int id, String marca, String modelo, String uso, String madeiracorpo,
-            String madeiraBraco, String captacao, double raio,
-            String tipocorpo, int estoque, double preco) {
+    public Cadastro(boolean guitarra) {
         initComponents();
         this.setLocationRelativeTo(null);
-
-        Guitarra = true;
-        setId(id);
-        jTextField1.setText(marca);
-        jTextField2.setText(modelo);
-        jTextField3.setText(uso);
-        jTextField4.setText(madeiracorpo);
-        jTextField5.setText(madeiraBraco);
-        jTextField6.setText(captacao);
-        jTextField7.setText(tipocorpo);
-        jTextField8.setText(String.valueOf(raio));
-        jTextField9.setText(Integer.toString(estoque));
-        jTextField10.setText(String.valueOf(preco));
-    }
-
-    public Editar(int id, String marca, String modelo, String uso, String madeiracorpo,
-            String madeiraBraco, String captacao, int numcordas, String passivoativo,
-            int estoque, double preco) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-
-        Guitarra = false;
-        jLabel8.setText("Número de cordas");
-        jLabel9.setText("Passivo/Ativo");
-        setId(id);
-        jTextField1.setText(marca);
-        jTextField2.setText(modelo);
-        jTextField3.setText(uso);
-        jTextField4.setText(madeiracorpo);
-        jTextField5.setText(madeiraBraco);
-        jTextField6.setText(captacao);
-        jTextField7.setText(Integer.toString(numcordas));
-        jTextField8.setText(passivoativo);
-        jTextField9.setText(Integer.toString(estoque));
-        jTextField10.setText(String.valueOf(preco));
-    }
-
-    public Editar() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
-
-    private boolean converter() {
-        try {
-            if (Guitarra) {
-                raio = Double.parseDouble(jTextField8.getText());               
-            } else {
-                numcordas = Integer.parseInt(jTextField7.getText());
-            }
-            estoque = Integer.parseInt(jTextField9.getText());
-            preco = Double.parseDouble(jTextField10.getText());
-            return true;
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: " + ex);
-            return false;
+        Guitarra = guitarra;
+        if (!Guitarra) {
+            jLabel8.setText("Número de cordas");
+            jLabel9.setText("Passivo/Ativo");
         }
     }
 
-    public int getId() {
-        return id;
-    }
+    public Cadastro() {
 
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**
@@ -104,6 +44,7 @@ public class Editar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -125,9 +66,7 @@ public class Editar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,24 +74,31 @@ public class Editar extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Editar");
+        jLabel12.setText("Cadastro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(87, 87, 87)
                 .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,24 +204,10 @@ public class Editar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Confirmar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Excluir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -288,24 +220,21 @@ public class Editar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(108, 108, 108)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         pack();
@@ -316,45 +245,29 @@ public class Editar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        estoque = Integer.parseInt(jTextField9.getText());
+        preco = Double.parseDouble(jTextField10.getText());
         if (Guitarra) {
+            raio = Double.parseDouble(jTextField8.getText());
             Guitarra gui = new Guitarra();
-            converter();
-            gui.editar(getId(), jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
+            gui.cadastrar(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
                     jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), raio,
                     jTextField7.getText(), estoque, preco);
             dispose();
         } else {
             Baixo bass = new Baixo();
-            converter();
-            bass.editar(getId(), jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
+            numcordas = Integer.parseInt(jTextField7.getText());
+            bass.cadastrar(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(),
                     jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), numcordas,
                     jTextField8.getText(), estoque, preco);
-            dispose();
+            dispose();        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (Guitarra) {
-            if (JOptionPane.showConfirmDialog(null, "Deseja excluir esse item? Essa ação não pode ser revertida! ", "Confirmação",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                Guitarra g = new Guitarra();
-                g.deletar(id);
-                dispose();
-            }
-        } else {
-            if (JOptionPane.showConfirmDialog(null, "Deseja excluir esse item? Essa ação não pode ser revertida! ", "Confirmação",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                Baixo b = new Baixo();
-                b.deletar(id);
-                dispose();
-            }
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,20 +286,20 @@ public class Editar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Editar().setVisible(true);
+                new Cadastro().setVisible(true);
             }
         });
     }
@@ -394,7 +307,6 @@ public class Editar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

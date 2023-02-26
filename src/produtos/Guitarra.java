@@ -8,11 +8,11 @@ public class Guitarra extends InstrumentoCordas {
     private double raio;
     private String tipocorpo;
 
-    public boolean cadastrar(int id, String marca, String modelo, String uso, String madeiracorpo, 
+    public boolean cadastrar(String marca, String modelo, String uso, String madeiracorpo, 
             String madeiraBraco, String captacao, double raio,
             String tipocorpo, int estoque, double preco) {
         GuitarraDAO guiDAO = new GuitarraDAO();
-        super.cadastrar(id, marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, estoque, preco);
+        super.cadastrar(marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, estoque, preco);
         setRaio(raio);
         setTipocorpo(tipocorpo);
         if (guiDAO.save(this)) {

@@ -15,9 +15,8 @@ public class InstrumentoCordas {
     private double preco;
 
     // MÉTODOS //
-    public boolean cadastrar (int id, String marca, String modelo, String uso, String madeiracorpo, 
+    public boolean cadastrar (String marca, String modelo, String uso, String madeiracorpo, 
             String madeiraBraco, String captacao, int estoque, double preco) {
-        setID(id);
         setMarca(marca);
         setModelo(modelo);
         setEstadoUso(uso);

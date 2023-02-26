@@ -22,7 +22,7 @@ public class BaixoDAO {
     }
 
     public boolean save(Baixo baixo) {
-        String sql = "INSERT INTO baixo (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco) \n"
+        String sql = "INSERT INTO baixo (marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, numcordas, passivoativo, estoque, preco) \n"
                 + "VALUES (?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
         try {

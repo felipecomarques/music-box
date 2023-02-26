@@ -6,6 +6,10 @@ package interfacegrafica;
 
 import banco.BaixoDAO;
 import banco.GuitarraDAO;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -80,6 +84,20 @@ public class Estoque extends javax.swing.JFrame {
                 b.getEstoque(),
                 b.getPreco(),});
         }
+    }
+    
+    private void AtualizarTabelaConstante(JFrame x) {
+        Thread t = new Thread(() -> {
+            while (x.isVisible()) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                    LerJTable();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Estoque.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        t.start();
     }
 
     /**
@@ -190,7 +208,7 @@ public class Estoque extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton4)
@@ -245,17 +263,18 @@ public class Estoque extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +285,7 @@ public class Estoque extends javax.swing.JFrame {
                     .addComponent(jTextField1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)))
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -279,11 +298,13 @@ public class Estoque extends javax.swing.JFrame {
         Menu MP = new Menu();
         MP.setVisible(true);
         dispose();
+        AtualizarTabelaConstante(MP);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //CadastroProdutos CP = new CadastroProdutos();
-        //CP.setVisible(true);
+        CadastroEscolha CE = new CadastroEscolha();
+        CE.setVisible(true);
+        AtualizarTabelaConstante(CE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -315,7 +336,7 @@ public class Estoque extends javax.swing.JFrame {
                 double preco = (double) jTable1.getValueAt(jTable1.getSelectedRow(), 10);
                 ED = new Editar(id, marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, raio, tipocorpo, estoque, preco);
                 ED.setVisible(true);
-                LerJTable();
+                AtualizarTabelaConstante(ED);
             }
         } else if (jTable2.getSelectedRow() != -1 && jTabbedPane1.getSelectedIndex() == 1) {
             if (jTable2.getSelectedRowCount() > 1) {
@@ -336,7 +357,7 @@ public class Estoque extends javax.swing.JFrame {
                 double preco = (double) jTable2.getValueAt(jTable2.getSelectedRow(), 10);
                 ED = new Editar(id, marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, numcordas, passivoativo, estoque, preco);
                 ED.setVisible(true);
-                LerJTable();
+                AtualizarTabelaConstante(ED);
             }
         } else {
             JOptionPane.showMessageDialog(null, "É necessário selecionar algum item nas tabelas!");
