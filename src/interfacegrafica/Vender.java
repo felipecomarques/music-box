@@ -20,6 +20,8 @@ public class Vender extends javax.swing.JFrame {
     public Vender(int id, String marca, String modelo, int estoque, double preco, boolean g) {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
+        
         gui = g;
         this.id = id;
         this.estoque = estoque;

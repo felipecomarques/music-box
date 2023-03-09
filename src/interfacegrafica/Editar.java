@@ -27,6 +27,7 @@ public class Editar extends javax.swing.JFrame {
             String tipocorpo, int estoque, double preco) {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
 
         Guitarra = true;
         setId(id);

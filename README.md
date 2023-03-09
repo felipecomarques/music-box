@@ -10,4 +10,4 @@
 Esse projeto utliza um banco de dados MySQL. Deste modo, é necessário utilizar o MySQL Server para utilizar este programa. O usuário padrão é `root` e a senha padrão é `123321`, isto pode ser alterado na classe ConnectionFactory nos atributos `USER` e `PASS`.
 
 ## 🖥 Imagem
-![MusicBox-Print](https://user-images.githubusercontent.com/57302703/222171511-ead6cd3b-a28c-4c57-9bb7-3c043ad7f440.png)
+![Captura de tela 2023-03-09 104140](https://user-images.githubusercontent.com/57302703/224041753-22b5f904-a658-414f-8eb5-c7cfa23e292f.png)

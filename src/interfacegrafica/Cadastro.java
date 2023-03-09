@@ -22,6 +22,7 @@ public class Cadastro extends javax.swing.JFrame {
     public Cadastro(boolean guitarra) {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         Guitarra = guitarra;
         if (!Guitarra) {
             jLabel8.setText("Número de cordas");

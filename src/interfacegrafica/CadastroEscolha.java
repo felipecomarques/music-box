@@ -16,6 +16,7 @@ public class CadastroEscolha extends javax.swing.JFrame {
     public CadastroEscolha() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
