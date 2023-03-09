@@ -39,6 +39,15 @@ public class Baixo extends InstrumentoCordas {
             return false;
         }
     }
+    
+    public void vender(int id){
+        BaixoDAO bassDAO = new BaixoDAO();
+        setID(id);
+        if (bassDAO.venda(this))
+            JOptionPane.showMessageDialog(null, "Vendido com sucesso!");            
+        else
+            JOptionPane.showMessageDialog(null, "Erro ao vender");
+    }
 
     @Override
     public boolean deletar(int id) {

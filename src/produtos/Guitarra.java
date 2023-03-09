@@ -39,6 +39,15 @@ public class Guitarra extends InstrumentoCordas {
         }
     }
     
+    public void vender(int id){
+        GuitarraDAO guiDAO = new GuitarraDAO();
+        setID(id);
+        if (guiDAO.venda(this))
+            JOptionPane.showMessageDialog(null, "Vendido com sucesso!");            
+        else
+            JOptionPane.showMessageDialog(null, "Erro ao vender");
+    }
+    
     @Override
     public boolean deletar(int id) {
         GuitarraDAO guiDAO = new GuitarraDAO();

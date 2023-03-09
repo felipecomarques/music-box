@@ -45,12 +45,16 @@ public class InstrumentoCordas {
         setID(id);
         return true;
     }
-
+    
+    public void vender(int id){
+        setID(id);
+    }
+    
+    // GET E SET
     public int getID() {
         return ID;
     }
 
-    // GET E SET //
     public void setID(int ID) {
         this.ID = ID;
     }

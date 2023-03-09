@@ -211,6 +211,7 @@ public class Estoque extends javax.swing.JFrame {
         jTabbedPane1.addTab("Baixos", jScrollPane2);
 
         jButton1.setText("Voltar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -294,7 +295,6 @@ public class Estoque extends javax.swing.JFrame {
         });
 
         jButton6.setText("Vender");
-        jButton6.setEnabled(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -401,7 +401,41 @@ public class Estoque extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        LerJTable();
+        jTextField1.setText(null);
+        if (jTable1.getSelectedRow() != -1 && jTabbedPane1.getSelectedIndex() == 0) {
+            if (jTable1.getSelectedRowCount() > 1) {
+                JOptionPane.showMessageDialog(null, "Não pode editar mais de um item!");
+            } else {
+                Guitarra g = new Guitarra();
+                Vender VE;
+                // marca, modelo, uso, madeiracorpo, madeiraBraco, captacao, tipocorpo, raio, estoque, preco
+                int id = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                String marca = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+                String modelo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+                int estoque = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 9);
+                double preco = (double) jTable1.getValueAt(jTable1.getSelectedRow(), 10);
+                VE = new Vender(id, marca, modelo, estoque, preco, true);
+                VE.setVisible(true);
+                AtualizarTabelaConstante(VE);
+            }
+        } else if (jTable2.getSelectedRow() != -1 && jTabbedPane1.getSelectedIndex() == 1) {
+            if (jTable2.getSelectedRowCount() > 1) {
+                JOptionPane.showMessageDialog(null, "Não pode editar mais de um item!");
+            } else {
+                Baixo b = new Baixo();
+                Vender VE;
+                int id = (int) jTable2.getValueAt(jTable2.getSelectedRow(), 0);
+                String marca = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 1);
+                String modelo = (String) jTable2.getValueAt(jTable2.getSelectedRow(), 2);
+                int estoque = (int) jTable2.getValueAt(jTable2.getSelectedRow(), 9);
+                double preco = (double) jTable2.getValueAt(jTable2.getSelectedRow(), 10);
+                VE = new Vender(id, marca, modelo, estoque, preco, false);
+                VE.setVisible(true);
+                AtualizarTabelaConstante(VE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "É necessário selecionar algum item nas tabelas!");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped

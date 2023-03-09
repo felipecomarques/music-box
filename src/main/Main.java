@@ -1,6 +1,7 @@
 package main;
 
 import banco.AdmBD;
+import interfacegrafica.Estoque;
 import interfacegrafica.Menu;
 
 public class Main {
@@ -49,7 +50,7 @@ public class Main {
             java.util.logging.Logger.getLogger(Menu.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
-        new Menu().setVisible(true);
+        new Estoque().setVisible(true);
 
     }
 

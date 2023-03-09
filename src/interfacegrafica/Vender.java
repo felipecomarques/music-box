@@ -4,15 +4,30 @@
  */
 package interfacegrafica;
 
+import javax.swing.JOptionPane;
+import produtos.Baixo;
+import produtos.Guitarra;
+
 /**
  *
  * @author felip
  */
 public class Vender extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Vender
-     */
+    private int id;
+    private boolean gui;
+    private int estoque;
+    public Vender(int id, String marca, String modelo, int estoque, double preco, boolean g) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        gui = g;
+        this.id = id;
+        this.estoque = estoque;
+        jTextField1.setText(marca);
+        jTextField2.setText(modelo);
+        jTextField3.setText(Double.toString(preco));
+    }
+
     public Vender() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -40,7 +55,7 @@ public class Vender extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -53,7 +68,7 @@ public class Vender extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -66,6 +81,20 @@ public class Vender extends javax.swing.JFrame {
         );
 
         jButton1.setText("Vender");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setEnabled(false);
+
+        jTextField2.setEnabled(false);
+
+        jTextField3.setEnabled(false);
+
+        jSpinner1.setEnabled(false);
+        jSpinner1.setValue(1);
 
         jLabel2.setText("Marca");
 
@@ -76,6 +105,12 @@ public class Vender extends javax.swing.JFrame {
         jLabel5.setText("Quantidade");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "10%", "20%", "30%" }));
+        jComboBox1.setEnabled(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +172,28 @@ public class Vender extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        //jTextField3.setText(precobase * jComboBox1.get);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (gui){
+            if (estoque > 0){
+                Guitarra guita = new Guitarra();
+                guita.vender(id);
+                dispose();
+            } else
+                JOptionPane.showMessageDialog(null, "Não há estoque!");
+        } else {
+            if (estoque > 0){
+                Baixo baixo = new Baixo();
+                baixo.vender(id);
+                dispose();
+            } else
+                JOptionPane.showMessageDialog(null, "Não há estoque!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

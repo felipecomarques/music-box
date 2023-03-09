@@ -114,6 +114,22 @@ public class BaixoDAO {
         }
     }
     
+    public boolean venda(Baixo baixo) {
+        String sql = "UPDATE baixo SET estoque = estoque - 1 WHERE id = (?);";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, baixo.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao vender " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    
     public boolean delete(Baixo Baixo) {
         String sql = "DELETE FROM baixo WHERE id = (?)";
         PreparedStatement stmt = null;

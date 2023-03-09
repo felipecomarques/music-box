@@ -123,6 +123,22 @@ public class GuitarraDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+    
+    public boolean venda(Guitarra guita) {
+        String sql = "UPDATE guitarra SET estoque = estoque - 1 WHERE id = (?);";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, guita.getID());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao vender " + ex);
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
 
     public boolean delete(Guitarra Guitarra) {
         String sql = "DELETE FROM guitarra WHERE id = (?)";
