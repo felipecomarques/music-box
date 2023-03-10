@@ -7,7 +7,11 @@ public class Guitarra extends InstrumentoCordas {
 
     private double raio;
     private String tipocorpo;
-
+    
+    /*
+    polimorfismo - o mesmo método cadastrar da superclasse, porém irá ter um resultado diferente
+    pois a classe filho guitarra possui mais atributos para cadastrar, deletar e etc
+    */
     public boolean cadastrar(String marca, String modelo, String uso, String madeiracorpo, 
             String madeiraBraco, String captacao, double raio,
             String tipocorpo, int estoque, double preco) {

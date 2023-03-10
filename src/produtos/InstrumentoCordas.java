@@ -2,8 +2,9 @@ package produtos;
 
 import javax.swing.JOptionPane;
 
-public class InstrumentoCordas {
+abstract class InstrumentoCordas {
 
+    // Atriubtos com private para encapsulamento
     private int ID;
     private String marca;
     private String modelo;
